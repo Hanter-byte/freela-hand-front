@@ -1,5 +1,4 @@
-<h2>Serviços</h2>
-<hr>
+<app-titulo [titulo]="'Serviços'"></app-titulo>
 
 <div class="form-inline">
   <div class="form-group mb-2">
@@ -30,7 +29,7 @@
           <i class="fa fa-pencil"></i>
         </button>
         -
-        <button tooltip="Excluir" class="btn btn-danger">
+        <button tooltip="Excluir" class="btn btn-danger" (click)="openModal(template)">
           <i class="fa fa-trash"></i>
         </button>
       </td>
@@ -38,6 +37,14 @@
   </tbody>
   <tbody *ngIf="!servicos || !servicos.length">
     <tr>
-      <td colspan="5" class="text-center">Nenhum registro encontrado!</td>
+      <td colspan="6" class="text-center">Nenhum registro encontrado!</td>
     </tr>
 </table>
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Tem certeza que deseja excluir este registro?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()">Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+  </div>
+</ng-template>

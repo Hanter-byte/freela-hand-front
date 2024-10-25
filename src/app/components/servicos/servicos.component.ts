@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { ServicosServiceTsService } from '../services/servicos.service.ts.service';
-import { Servico } from '../models/Servico';
+import { Component, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
+import { Servico } from 'src/app/models/Servico';
+import { ServicosServiceTsService } from 'src/app/services/servicos.service.ts.service';
 
 @Component({
   selector: 'app-servicos',
@@ -9,6 +11,8 @@ import { Servico } from '../models/Servico';
   providers: [ServicosServiceTsService],
 })
 export class ServicosComponent {
+  modalRef?: BsModalRef;
+
   public servicos: Servico[] = [];
   private _filtroLista: string = '';
   public servicosFiltrados: Servico[] = [];
@@ -32,7 +36,11 @@ export class ServicosComponent {
     );
   }
 
-  constructor(private servicoService: ServicosServiceTsService) {}
+  constructor(
+    private servicoService: ServicosServiceTsService,
+    private modalService: BsModalService,
+    private toastr: ToastrService
+  ) {}
 
   public ngOnInit() {
     this.getServicos();
@@ -49,7 +57,21 @@ export class ServicosComponent {
       },
       error: (error: any) => {
         console.error(error);
+        this.toastr.error('Erro ao carregar os serviços!', 'Erro');
       },
     });
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+
+  confirm(): void {
+    this.modalRef?.hide();
+    this.toastr.success('Serviço excluído com sucesso!', 'Exclusão');
+  }
+
+  decline(): void {
+    this.modalRef?.hide();
   }
 }

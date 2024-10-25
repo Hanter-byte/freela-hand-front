@@ -3,5 +3,5 @@ export interface Servico {
   name: string;
   description: string;
   price: number;
-  dateTime : Date;
+  dateTime: Date;
 }
