@@ -1,0 +1,43 @@
+<h2>Serviços</h2>
+<hr>
+
+<div class="form-inline">
+  <div class="form-group mb-2">
+    <input type="text" [(ngModel)]="filtroLista" class="form-control mr-2" placeholder="Pesquisar...">
+  </div>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Preço</th>
+      <th>Data</th>
+      <th>Opções</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="servicos && servicos.length">
+    <tr *ngFor="let servico of servicosFiltrados">
+      <td>{{ servico.id }}</td>
+      <td>{{ servico.name }}</td>
+      <td>{{ servico.description }}</td>
+      <td>{{ servico.price | currency:'BRL' }} </td>
+      <td>{{servico.dateTime | DateTimeFormatPipe}}</td>
+      <td>
+        <button tooltip="Editar" class="btn btn-primary">
+          <i class="fa fa-pencil"></i>
+        </button>
+        -
+        <button tooltip="Excluir" class="btn btn-danger">
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="!servicos || !servicos.length">
+    <tr>
+      <td colspan="5" class="text-center">Nenhum registro encontrado!</td>
+    </tr>
+</table>
