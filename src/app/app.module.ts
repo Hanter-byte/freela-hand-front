@@ -19,6 +19,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
 import { TituloComponent } from './shared/titulo/titulo.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ServicoDetalheComponent } from './components/servicos/servico-detalhe/servico-detalhe.component';
+import { ServicoListaComponent } from './components/servicos/servico-lista/servico-lista.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     NavComponent,
     TituloComponent,
     DashboardComponent,
+    ServicoDetalheComponent,
+    ServicoListaComponent,
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,7 @@
     "@ng-bootstrap/ng-bootstrap": "^14.2.0",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
+    "bootswatch": "^5.3.3",
     "ngx-bootstrap": "^10.3.0",
     "ngx-toastr": "^16.2.0",
     "rxjs": "~7.8.0",

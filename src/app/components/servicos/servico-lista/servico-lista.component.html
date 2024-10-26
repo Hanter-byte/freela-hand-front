@@ -1,0 +1,54 @@
+<div class="card rounded shadow p-3">
+  <div class="d-flex">
+    <div class="flex-fill">
+      <div class="form-group mb-2">
+        <input type="text" [(ngModel)]="filtroLista" class="form-control" placeholder="Pesquisar...">
+      </div>
+    </div>
+    <div>
+      <a href="#" class="d-flex btn btn-outline-primary" routerLink="/servicos/detalhe">
+        <i class="fa fa-plus-circle mt-1 my-1"></i>
+        <b class="ml-1 d-none d-sm-block">Novo</b>
+      </a>
+    </div>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Preço</th>
+        <th>Data</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="servicos && servicos.length">
+      <tr *ngFor="let servico of servicosFiltrados">
+        <td>{{ servico.id }}</td>
+        <td>{{ servico.name }}</td>
+        <td>{{ servico.description }}</td>
+        <td>{{ servico.price | currency:'BRL' }} </td>
+        <td>{{servico.dateTime | DateTimeFormatPipe}}</td>
+        <td>
+          <button tooltip="Excluir" class="btn btn-danger small" (click)="openModal(template)">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="!servicos || !servicos.length">
+      <tr>
+        <td colspan="6" class="text-center">Nenhum registro encontrado!</td>
+      </tr>
+  </table>
+</div>
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Tem certeza que deseja excluir este registro?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()">Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+  </div>
+</ng-template>
