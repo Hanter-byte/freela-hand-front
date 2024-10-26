@@ -1,4 +1,5 @@
 import { Component, TemplateRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Servico } from 'src/app/models/Servico';
@@ -7,7 +8,7 @@ import { ServicosServiceTsService } from 'src/app/services/servicos.service.ts.s
 @Component({
   selector: 'app-servico-lista',
   templateUrl: './servico-lista.component.html',
-  styleUrls: ['./servico-lista.component.scss']
+  styleUrls: ['./servico-lista.component.scss'],
 })
 export class ServicoListaComponent {
   modalRef?: BsModalRef;
@@ -27,6 +28,13 @@ export class ServicoListaComponent {
       : this.servicos;
   }
 
+  constructor(
+    private servicoService: ServicosServiceTsService,
+    private modalService: BsModalService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
+
   public filtrarServicos(filtrarPor: string): any {
     filtrarPor = filtrarPor.toLocaleLowerCase();
     return this.servicos.filter(
@@ -34,12 +42,6 @@ export class ServicoListaComponent {
         servico.name.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     );
   }
-
-  constructor(
-    private servicoService: ServicosServiceTsService,
-    private modalService: BsModalService,
-    private toastr: ToastrService
-  ) {}
 
   public ngOnInit() {
     this.getServicos();
@@ -72,5 +74,11 @@ export class ServicoListaComponent {
 
   decline(): void {
     this.modalRef?.hide();
+  }
+
+  detalhes(): void {}
+
+  detalheServico(id: number): void {
+    this.router.navigate([`/servicos/detalhe/${id}`]);
   }
 }

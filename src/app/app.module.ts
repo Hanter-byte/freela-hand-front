@@ -21,6 +21,10 @@ import { TituloComponent } from './shared/titulo/titulo.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ServicoDetalheComponent } from './components/servicos/servico-detalhe/servico-detalhe.component';
 import { ServicoListaComponent } from './components/servicos/servico-lista/servico-lista.component';
+import { UserComponent } from './components/user/user.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { RegisterComponent } from './components/user/register/register.component';
+import { PerfilComponent } from './components/user/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,10 @@ import { ServicoListaComponent } from './components/servicos/servico-lista/servi
     DashboardComponent,
     ServicoDetalheComponent,
     ServicoListaComponent,
+    UserComponent,
+    LoginComponent,
+    RegisterComponent,
+    PerfilComponent,
   ],
   imports: [
     BrowserModule,
