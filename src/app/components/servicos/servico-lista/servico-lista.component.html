@@ -18,9 +18,9 @@
       <tr>
         <th>#</th>
         <th>Nome</th>
-        <th>Descrição</th>
+        <th class="d-none d-sm-table-cell">Descrição</th>
         <th>Preço</th>
-        <th>Data</th>
+        <!-- <th>Data</th> -->
         <th>Opções</th>
       </tr>
     </thead>
@@ -28,11 +28,11 @@
       <tr *ngFor="let servico of servicosFiltrados" style="cursor: pointer;" (click)="detalheServico(servico.id)">
         <td>{{ servico.id }}</td>
         <td>{{ servico.name }}</td>
-        <td>{{ servico.description }}</td>
+        <td class="d-none d-sm-table-cell">{{ servico.description }}</td>
         <td>{{ servico.price | currency:'BRL' }} </td>
-        <td>{{servico.dateTime | DateTimeFormatPipe}}</td>
+        <!-- <td>{{servico.dateTime | DateTimeFormatPipe}}</td> -->
         <td>
-          <button tooltip="Excluir" class="btn btn-danger small" (click)="openModal(template)">
+          <button tooltip="Excluir" class="btn btn-danger small" (click)="openModal($event, template, servico.id)">
             <i class="fa fa-trash"></i>
           </button>
         </td>
@@ -47,7 +47,7 @@
 
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Tem certeza que deseja excluir este registro?</p>
+    <p>Tem certeza que deseja excluir o serviço de código {{this.servicoId}}</p>
     <button type="button" class="btn btn-default" (click)="confirm()">Yes</button>
     <button type="button" class="btn btn-primary" (click)="decline()">No</button>
   </div>

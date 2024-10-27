@@ -12,10 +12,10 @@ import { ServicosServiceTsService } from 'src/app/services/servicos.service.ts.s
 })
 export class ServicoListaComponent {
   modalRef?: BsModalRef;
-
   public servicos: Servico[] = [];
   private _filtroLista: string = '';
   public servicosFiltrados: Servico[] = [];
+  public servicoId: number = 0;
 
   public get filtroLista(): string {
     return this._filtroLista;
@@ -52,7 +52,6 @@ export class ServicoListaComponent {
       next: (servicos: Servico[]) => {
         this.servicos = servicos.map((servico) => ({
           ...servico,
-          dateTime: new Date(),
         }));
         this.servicosFiltrados = this.servicos;
       },
@@ -63,20 +62,29 @@ export class ServicoListaComponent {
     });
   }
 
-  openModal(template: TemplateRef<any>) {
+  openModal(event: any, template: TemplateRef<any>, servicoId: number): void {
+    event.stopPropagation();
+    this.servicoId = servicoId;
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
   confirm(): void {
     this.modalRef?.hide();
-    this.toastr.success('Serviço excluído com sucesso!', 'Exclusão');
+    this.servicoService.deleteServico(this.servicoId).subscribe({
+      next: () => {
+        this.getServicos();
+        this.toastr.success('Serviço deletado com sucesso!', 'Sucesso');
+      },
+      error: (error: any) => {
+        console.error(error);
+        this.toastr.error('Erro ao deletar o serviço!', 'Erro');
+      },
+    });
   }
 
   decline(): void {
     this.modalRef?.hide();
   }
-
-  detalhes(): void {}
 
   detalheServico(id: number): void {
     this.router.navigate([`/servicos/detalhe/${id}`]);
