@@ -7,8 +7,8 @@
     </div>
     <div>
       <a href="#" class="d-flex btn btn-outline-primary" routerLink="/servicos/detalhe">
-        <i class="fa fa-plus-circle mt-1 my-1"></i>
-        <b class="ml-1 d-none d-sm-block">Novo</b>
+        <i class="fa fa-plus-circle mt-1 my-1 me-1"></i>
+        <b class="d-none d-sm-block">Novo</b>
       </a>
     </div>
   </div>
@@ -20,7 +20,6 @@
         <th>Nome</th>
         <th class="d-none d-sm-table-cell">Descrição</th>
         <th>Preço</th>
-        <!-- <th>Data</th> -->
         <th>Opções</th>
       </tr>
     </thead>
@@ -30,7 +29,6 @@
         <td>{{ servico.name }}</td>
         <td class="d-none d-sm-table-cell">{{ servico.description }}</td>
         <td>{{ servico.price | currency:'BRL' }} </td>
-        <!-- <td>{{servico.dateTime | DateTimeFormatPipe}}</td> -->
         <td>
           <button tooltip="Excluir" class="btn btn-danger small" (click)="openModal($event, template, servico.id)">
             <i class="fa fa-trash"></i>

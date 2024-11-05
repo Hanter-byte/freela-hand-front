@@ -38,8 +38,10 @@ export class ServicoListaComponent {
   public filtrarServicos(filtrarPor: string): any {
     filtrarPor = filtrarPor.toLocaleLowerCase();
     return this.servicos.filter(
-      (servico: { name: string }) =>
-        servico.name.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+      (servico: { name: string; description: string; price: number }) =>
+        servico.name.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
+        servico.description.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
+        servico.price.toString().indexOf(filtrarPor) !== -1
     );
   }
 
