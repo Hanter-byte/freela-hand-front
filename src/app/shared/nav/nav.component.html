@@ -1,39 +1,26 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm" *ngIf="showMenu()">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="dashboard">FreelaHand</a>
     <button class="navbar-toggler" (click)="isCollapsed = !isCollapsed" type="button" data-bs-toggle="collapse"
       data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" [collapse]="isCollapsed" id="navbarNav">
-      <ul class="navbar-nav">
+
+    <div class="navbar-collapse collapse" [ngClass]="{'show': !isCollapsed}" id="navbarNav">
+      <a class="navbar-brand col-lg-3 me-0" href="#">FreelaHand</a>
+      <ul class="navbar-nav col-lg-6 justify-content-lg-center">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="dashboard">Dash</a>
+          <a class="nav-link" aria-current="page" routerLink="dashboard" routerLinkActive="active">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="servicos/lista">Serviços</a>
+          <a class="nav-link" routerLink="servicos/lista" routerLinkActive="active">Serviços</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="clientes">Clientes</a>
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
         </li>
       </ul>
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item dropdown" dropdown>
-          <a dropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            João
-          </a>
-          <div *dropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">
-              Perfil
-            </a>
-            <div role="separator" class="divider"></div>
-            <a class="dropdown-item" routerLink="user/login">
-              Sair
-            </a>
-          </div>
-        </li>
-      </ul>
+      <div class="d-lg-flex col-lg-3 justify-content-lg-end">
+        <button class="btn btn-primary">Button</button>
+      </div>
     </div>
   </div>
 </nav>
