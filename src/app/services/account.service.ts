@@ -10,7 +10,6 @@ import { map, Observable, ReplaySubject, take } from 'rxjs';
 export class AccountService {
   private currentUserSource = new ReplaySubject<User>(1);
   public currentuser$ = this.currentUserSource.asObservable();
-
   baseUrl = environment.apiURL + 'api/Token/LoginUser';
 
   constructor(private http: HttpClient) {}

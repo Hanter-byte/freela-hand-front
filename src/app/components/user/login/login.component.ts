@@ -27,7 +27,8 @@ export class LoginComponent {
       error: (error: any) => {
         this.toaster.error('Usuário ou senha inválido', 'Erro');
         this.model = {} as UserLogin;
-      }
+      },
+      complete() {},
     });
   }
 }
