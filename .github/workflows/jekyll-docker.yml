@@ -35,4 +35,4 @@ jobs:
         context: .
         file: Dockerfile
         push: true
-        tags: hanterbyte/frellahand:latest
+        tags: hanterbyte/frellahand/front:latest
