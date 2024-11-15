@@ -8,6 +8,7 @@ import { Servico } from '@app/models/Servico';
   providedIn: 'root',
 })
 export class ServicosServiceTsService {
+
   baseUrl = environment.apiURL + 'api/service';
   constructor(private http: HttpClient) {}
 
